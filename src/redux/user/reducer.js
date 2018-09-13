@@ -2,7 +2,7 @@ const initialState = {
   staffID: "",
   password: 123456,
   authorizing: false,
-  authorized: true,
+  authorized: false,
   message: ""
 };
 

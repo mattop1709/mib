@@ -6,10 +6,25 @@ import Details from "../components/home/details";
 
 const Stack = createStackNavigator({
   HomeScreen: {
-    screen: Home
+    screen: Home,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#ffb347",
+        elevation: 0
+      },
+      headerTitle: "HOME"
+    })
   },
   DetailsScreen: {
-    screen: Details
+    screen: Details,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#ffb347",
+        elevation: 0
+      },
+      headerTintColor: "#000",
+      headerTitle: "DETAILS"
+    })
   }
 });
 

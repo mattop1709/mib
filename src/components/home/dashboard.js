@@ -5,7 +5,7 @@ import { styles as s } from "react-native-style-tachyons";
 export function Dashboard({ lists, area, date }) {
   var moment = require("moment-timezone");
   return (
-    <View style={[s.pv4, s.jcc, s.bg_white, s.mh2, s.br2, s.mt2]}>
+    <View style={[s.pv3, s.jcc, s.bg_paleOrange, s.mh3, s.br2, s.mv2]}>
       <Text style={[s.pv2, s.ph4, s.b]}>WAITERS DASHBOARD</Text>
       <Row
         caption={"Total Waiters"}
@@ -64,7 +64,7 @@ export function Dashboard({ lists, area, date }) {
 export function DashboardStatus({ waiters, status, figure, date }) {
   var moment = require("moment-timezone");
   return (
-    <View style={[s.pv3, s.jcc, s.bg_white, s.mh2, s.br2, s.mt2]}>
+    <View style={[s.pv3, s.jcc, s.bg_paleOrange, s.mh2, s.br2, s.mt3]}>
       <Text style={[s.pv2, s.ph4, s.b]}>DASHBOARD</Text>
       <Row
         caption={status == null ? "All" : status}
@@ -89,7 +89,7 @@ export const Row = ({ caption, figure, date }) => {
     <View style={[s.pv2, s.ph4, s.flx_row, s.jcsb]}>
       <View>
         <Text style={[s.f5]}>{caption}</Text>
-        <Text style={[s.darkGrey]}>{date}</Text>
+        <Text style={[s.white]}>{date}</Text>
       </View>
       <View style={[s.jcc]}>
         <Text style={[s.f5]}>{figure}</Text>

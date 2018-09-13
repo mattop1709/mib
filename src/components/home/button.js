@@ -5,7 +5,7 @@ import { styles as s } from "react-native-style-tachyons";
 export function ActionButton({ style, caption, route, disabled }) {
   return (
     <TouchableOpacity style={style} onPress={route} disabled={disabled}>
-      <Text style={[s.white]}>{caption}</Text>
+      <Text>{caption}</Text>
     </TouchableOpacity>
   );
 }

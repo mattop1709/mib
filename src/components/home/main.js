@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, ActivityIndicator } from "react-native";
+import { Text, View, ActivityIndicator, Alert } from "react-native";
 import { styles as s } from "react-native-style-tachyons";
 import { connect } from "react-redux";
 
 import { PickerArea } from "./picker";
 import { Dashboard } from "./dashboard";
 import { ActionButton } from "./button";
+
 import { fetchLists } from "../../redux/waiters/actions";
 import { logout } from "../../redux/user/actions";
 
@@ -33,17 +34,15 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    if (this.unsubscriber) {
-      this.unsubscriber();
-    }
+    this.unsubscriber;
   }
+
   render() {
     const { navigate } = this.props.navigation;
     const { zbc } = this.state;
     const { user, lists, isLoading, onLogout, date } = this.props;
-
     return (
-      <View style={[s.bg_lightGrey, s.flx_i, s.jcc]}>
+      <View style={[s.bg_white, s.flx_i, s.jcc]}>
         <PickerArea
           zbc={zbc}
           test={(itemValue, itemIndex) => this.setState({ zbc: itemValue })}
@@ -56,17 +55,22 @@ class Home extends Component {
         <ActionButton
           style={
             zbc == null
-              ? [s.bg_darkGrey, s.pv3, s.mh2, s.mt2, s.aic, s.br5]
-              : [s.bg_orange, s.pv3, s.mh2, s.mt2, s.aic, s.br5]
+              ? [s.bg_darkGrey, s.pv3, s.mh3, s.mt2, s.aic, s.br5]
+              : [s.bg_peach, s.pv3, s.mh3, s.mt2, s.aic, s.br5]
           }
           caption={"SHOW DETAILS"}
           route={() => navigate("DetailsScreen", { zbc })}
           disabled={zbc === null}
         />
         <ActionButton
-          style={[s.bg_red, s.pv3, s.mh2, s.mt2, s.aic, s.br5]}
+          style={[s.pv3, s.mh3, s.mt2, s.aic, s.br5]}
           caption={"LOGOUT"}
-          route={() => onLogout()}
+          route={() =>
+            Alert.alert("Attention", "Confirm to Logout?", [
+              { text: "Cancel", onPress: () => console.log("Cancel") },
+              { text: "Confirm", onPress: () => onLogout() }
+            ])
+          }
           disabled={null}
         />
       </View>

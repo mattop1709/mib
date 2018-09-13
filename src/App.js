@@ -1,14 +1,24 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { AsyncStorage, StyleSheet } from "react-native";
 import { createStore, applyMiddleware } from "redux";
 import { Provider, connect } from "react-redux";
-import thunkMiddleware from "redux-thunk";
+import { persistReducer, persistStore } from "redux-persist";
+import thunk from "redux-thunk";
 import NativeTachyons from "react-native-style-tachyons";
 
 import Index from "./routes/index";
 import reducers from "./redux/reducers";
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage
+};
+
+// const store = createStore(reducers, applyMiddleware(thunk));
+
+const pReducer = persistReducer(persistConfig, reducers);
+const store = createStore(pReducer, applyMiddleware(thunk));
+const persistor = persistStore(store);
 
 const App = () => {
   return (
@@ -25,12 +35,15 @@ NativeTachyons.build(
     // fontRem: 20,
     colors: {
       palette: {
-        orange: "#ee7202",
+        orange: "#ffb347",
+        paleOrange: "#ffb347",
+        peach: "#ffcd94",
         white: "#f8f8ff",
         darkGrey: "#c4c4c4",
         lightGrey: "#dcdcdc",
-        red: "#FF6347",
-        black: "#000000"
+        red: "#ff6b6b",
+        black: "#000000",
+        blue: "#779ecb"
       }
     }
   },

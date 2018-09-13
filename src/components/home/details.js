@@ -30,13 +30,18 @@ class Details extends Component {
       return waiters;
     }
   }
+
+  checkList() {
+    return this.filterLists().length > 0;
+  }
+
   render() {
     const { status } = this.state;
     const { waiters, navigation, date } = this.props;
     const zbcHeader = navigation.getParam("zbc");
     return (
-      <ScrollView style={[s.bg_lightGrey]}>
-        <View style={[s.bg_white, s.pv3, s.mh2, s.mt2, s.br2]}>
+      <ScrollView style={[s.bg_white]}>
+        <View style={[s.pv3, s.mh2, s.mt2, s.br2, s.b1]}>
           <View style={[s.aic]}>
             <Text style={[s.orange, s.b]}>{zbcHeader}</Text>
           </View>
@@ -53,6 +58,7 @@ class Details extends Component {
             date={date}
           />
         </View>
+        <Text style={[s.darkGrey, s.ph4, s.pb3]}>LIST OF CUSTOMERS</Text>
         <FlatList
           data={this.filterLists(status, waiters)}
           keyExtractor={(item, index) => item.reference}

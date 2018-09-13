@@ -30,9 +30,9 @@ class Index extends Component {
     const notificationOpen = await firebase
       .notifications()
       .getInitialNotification();
-    if (notification) {
-      const { title, body } = notificationOpen.notification;
-    }
+    // if (notification) {
+    //   const { title, body } = notificationOpen.notification;
+    // }
 
     this.messageListener = firebase.messaging().onMessage(message => {
       console.log(JSON.stringify(message));
